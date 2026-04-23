@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://cbc8h4w7hh2rv" path="res://assets/game/Characters/Basic Charakter Actions.png" id="1_rhvw2"]
 [ext_resource type="Texture2D" uid="uid://clurnwbktyil1" path="res://assets/game/Characters/Basic Charakter Spritesheet.png" id="2_8d0o8"]
+[ext_resource type="Script" uid="uid://d1ts8yu1ub24q" path="res://scripts/state_machine/node_state_machine.gd" id="3_ni5up"]
+[ext_resource type="Script" uid="uid://1anrqpeymyty" path="res://scenes/characters/Player/idel_state.gd" id="4_0mamx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ni5up"]
 atlas = ExtResource("1_rhvw2")
@@ -400,3 +402,12 @@ autoplay = "idel_front"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1844868760]
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_ctutu")
+
+[node name="statemachine" type="Node" parent="." unique_id=351816628 node_paths=PackedStringArray("initial_node_state")]
+script = ExtResource("3_ni5up")
+initial_node_state = NodePath("idel")
+
+[node name="idel" type="Node" parent="statemachine" unique_id=1362497606 node_paths=PackedStringArray("Player", "animated_sprite_2")]
+script = ExtResource("4_0mamx")
+Player = NodePath("../..")
+animated_sprite_2 = NodePath("../../AnimatedSprite2D")
